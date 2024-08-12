@@ -25,7 +25,7 @@ const getContacts = async (req, res) => {
     if (!user) {
       return res.json({ message: "user Contacts not Found" });
     }
-    res.json({ contacts: user.contacts });
+    res.json({ contacts: user.contacts, username: req.user.username });
   } catch (error) {
     res.json({ message: "errorrrr " });
   }
