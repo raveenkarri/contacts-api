@@ -63,14 +63,11 @@ const loginUser = async (req, res) => {
       { expiresIn: "1h" }
     );
 
-    res.cookie("token", accessToken, {
-      expires: new Date(Date.now() + 60 * 60 * 1000),
-    });
-
     // Send success response
     res.status(201).json({
       message: "User Login successful",
       user: { username: user.username, email: user.email },
+      accessToken,
     });
   } catch (err) {
     console.error(err);
@@ -91,19 +88,9 @@ const getUser = async (req, res) => {
     res.status(500).json({ message: "User details cant retrived" });
   }
 };
-const logoutUser = async (req, res) => {
-  try {
-    res.clearCookie("token");
-    res.status(200).json({ message: "logout successful" });
-  } catch (error) {
-    if (error) {
-      res.status(500).json({ message: "Error while logout" });
-    }
-  }
-};
+
 module.exports = {
   registerUser,
   loginUser,
   getUser,
-  logoutUser,
 };

@@ -1,7 +1,6 @@
-const bcrypt = require("bcrypt");
 const User = require("../models/userModel");
-const jwt = require("jsonwebtoken");
 
+//private routes
 const createContact = async (req, res) => {
   try {
     const { name, contactEmail, phone } = req.body;

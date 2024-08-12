@@ -5,7 +5,6 @@ const {
   registerUser,
   loginUser,
   getUser,
-  logoutUser,
 } = require("../controller/UserController");
 const {
   createContact,
@@ -15,11 +14,11 @@ const {
   deleteContact,
 } = require("../controller/ContactController");
 const { validateToken } = require("../middleware/validateToken");
-
+//user routes
 router.post("/register", registerUser);
 router.post("/login", loginUser);
-router.post("/logout", validateToken, logoutUser);
 router.get("/user", validateToken, getUser);
+//contact routes
 router.post("/create", validateToken, createContact);
 router.get("/userContacts", validateToken, getContacts);
 router.get("/userContact/:id", validateToken, getContact);
